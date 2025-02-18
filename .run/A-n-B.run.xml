@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="A-n-B" type="CompoundRunConfigurationType">
+    <toRun name="ApiA: http" type="LaunchSettings" />
+    <toRun name="ApiB: http" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>

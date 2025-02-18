@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=./config.router.schema.json
+supergraph:
+  listen: 0.0.0.0:4000
+  path: /graphql
+  introspection: true
+
+cors:
+  allow_any_origin: true
+
+headers:
+  all:
+    request:
+      - propagate:
+          matching: .*
+
+sandbox:
+  enabled: true
+
+homepage:
+  enabled: false
+
+include_subgraph_errors:
+  all: true # Propagate errors from all subgraphs

@@ -1,0 +1,22 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <LangVersion>preview</LangVersion>
+    <IsPackable>false</IsPackable>
+    <!-- Do not generate locale resource folders -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!-- Note[2024-12-12 klappo] HotChocolate / GreenDonate experimental feature-->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);GD0001</NoWarn>
+  </PropertyGroup>
+
+  <Import Project="./HotChocolateDemo.SchemaGen.props" />
+  <Import Project="./HotChocolateDemo.SchemaGen.targets" />
+
+</Project>
