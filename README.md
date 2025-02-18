@@ -2,7 +2,7 @@
 
 ## Tech Details
 
-* dotnet 8
+* dotnet 9
 * HotChocolate packages, version 15.*
 * router version 1.60.1
 * rover version 0.27.1
@@ -58,6 +58,7 @@ Also, solution contains scripts for running router instance, which joins subgrap
   ```
 
 Result is:
+
 ```json5
 {
   "data": {
