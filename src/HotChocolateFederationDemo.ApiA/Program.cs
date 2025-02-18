@@ -1,4 +1,4 @@
-using HotChocolateFederationIssue.Shared;
+using HotChocolateFederationDemo.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 

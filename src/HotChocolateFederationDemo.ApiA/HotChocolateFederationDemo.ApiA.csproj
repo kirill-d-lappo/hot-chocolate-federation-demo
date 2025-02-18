@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HotChocolateFederationIssue.Shared\HotChocolateFederationIssue.Shared.csproj" />
+    <ProjectReference Include="..\HotChocolateFederationDemo.Shared\HotChocolateFederationDemo.Shared.csproj" />
   </ItemGroup>
 
 

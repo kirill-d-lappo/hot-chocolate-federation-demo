@@ -1,4 +1,4 @@
-namespace HotChocolateFederationIssue.ApiA.Handlers;
+namespace HotChocolateFederationDemo.ApiA.Handlers;
 
 public class LongInside
 {

@@ -1,0 +1,8 @@
+﻿<Solution>
+  <Folder Name="/solution/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src\HotChocolateFederationDemo.ApiA\HotChocolateFederationDemo.ApiA.csproj" Type="Classic C#" />
+  <Project Path="src\HotChocolateFederationDemo.ApiB\HotChocolateFederationDemo.ApiB.csproj" Type="Classic C#" />
+  <Project Path="src\HotChocolateFederationDemo.Shared\HotChocolateFederationDemo.Shared.csproj" Type="Classic C#" />
+</Solution>

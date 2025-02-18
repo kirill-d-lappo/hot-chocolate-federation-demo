@@ -1,6 +1,6 @@
 ﻿using HotChocolate.Execution.Configuration;
 
-namespace HotChocolateFederationIssue.Shared;
+namespace HotChocolateFederationDemo.Shared;
 
 public static class HostBuilderExtensions
 {

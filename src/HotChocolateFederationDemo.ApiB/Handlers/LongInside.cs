@@ -1,4 +1,4 @@
-namespace HotChocolateFederationIssue.ApiB.Handlers;
+namespace HotChocolateFederationDemo.ApiB.Handlers;
 
 [ExtendServiceType]
 public class LongInside

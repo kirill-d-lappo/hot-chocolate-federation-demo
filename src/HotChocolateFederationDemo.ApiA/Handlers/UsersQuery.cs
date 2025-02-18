@@ -1,6 +1,6 @@
 using HotChocolate.Language;
 
-namespace HotChocolateFederationIssue.ApiA.Handlers;
+namespace HotChocolateFederationDemo.ApiA.Handlers;
 
 [ExtendObjectType(OperationType.Query)]
 public class UsersQuery

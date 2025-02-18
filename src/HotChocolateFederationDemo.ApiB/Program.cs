@@ -1,5 +1,5 @@
-using HotChocolateFederationIssue.ApiB.Handlers;
-using HotChocolateFederationIssue.Shared;
+using HotChocolateFederationDemo.ApiB.Handlers;
+using HotChocolateFederationDemo.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 

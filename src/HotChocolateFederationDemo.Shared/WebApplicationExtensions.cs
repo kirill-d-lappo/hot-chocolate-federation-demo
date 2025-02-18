@@ -1,4 +1,4 @@
-namespace HotChocolateFederationIssue.Shared;
+namespace HotChocolateFederationDemo.Shared;
 
 public static class WebApplicationExtensions
 {
