@@ -2,9 +2,9 @@ using HotChocolateFederationIssue.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.ConfigureGql()
-  .AddApiATypes()
-  ;
+builder
+  .ConfigureGql()
+  .AddApiATypes();
 
 var app = builder.Build();
 

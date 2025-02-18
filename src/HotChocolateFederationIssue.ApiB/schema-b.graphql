@@ -1,9 +1,13 @@
-﻿schema @link(url: "https:\/\/specs.apollo.dev\/federation\/v2.7", import: [ "@tag", "@requires", "@key", "@external", "FieldSet" ]) {
+﻿schema @link(url: "https:\/\/specs.apollo.dev\/federation\/v2.7", import: [ "@external", "@requires", "@tag", "@key", "FieldSet" ]) {
   query: Query
 }
 
 interface Error {
   message: String!
+}
+
+type LongInside {
+  value: Long! @external
 }
 
 type Query {
@@ -14,7 +18,13 @@ type Query {
 type User @key(fields: "id") {
   id: Long!
   name: String @external
-  extendedName: String @requires(fields: "name")
+  age: Long! @external
+  personalKey: UUID! @external
+  numbers: [Long!] @external
+  longs: [LongInside] @external
+  collectionOfDefaultTypeExample: String @requires(fields: "name age numbers personalKey")
+  simpleTypesOnlyExample: String @requires(fields: "name age personalKey")
+  collectionOfRefType: String @requires(fields: "longs { value }")
 }
 
 "This type provides a field named sdl: String! which exposes the SDL of the service's schema. This SDL (schema definition language) is a printed version of the service's schema including the annotations of federation directives. This SDL does not include the additions of the federation spec."
@@ -37,11 +47,16 @@ directive @link("Gets imported specification url." url: String! "Gets optional l
 "Used to annotate the required input fieldset from a base type for a resolver."
 directive @requires(fields: FieldSet!) on FIELD_DEFINITION
 
+"The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
+
 "Scalar representing a set of fields."
 scalar FieldSet
 
 "The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
 scalar Long
+
+scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")
 
 "The _Any scalar is used to pass representations of entities from external services into the root _entities field for execution. Validation of the _Any scalar is done by matching the __typename and @external fields defined in the schema."
 scalar _Any

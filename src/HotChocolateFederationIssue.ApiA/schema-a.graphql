@@ -6,24 +6,12 @@ interface Error {
   message: String!
 }
 
-"A segment of a collection."
-type AllUsersCollectionSegment {
-  "Information to aid in pagination."
-  pageInfo: CollectionSegmentInfo!
-  "A flattened list of the items."
-  items: [User]
-}
-
-"Information about the offset pagination."
-type CollectionSegmentInfo {
-  "Indicates whether more items exist following the set defined by the clients arguments."
-  hasNextPage: Boolean!
-  "Indicates whether more items exist prior the set defined by the clients arguments."
-  hasPreviousPage: Boolean!
+type LongInside {
+  value: Long!
 }
 
 type Query {
-  allUsers(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): AllUsersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  allUsers: [User]
   _service: _Service!
   _entities(representations: [_Any!]!): [_Entity]!
 }
@@ -31,6 +19,11 @@ type Query {
 type User @key(fields: "id") {
   id: Long!
   name: String
+  "Magic numbers"
+  numbers: [Long!]
+  personalKey: UUID!
+  age: Long!
+  longs: [LongInside]
 }
 
 "This type provides a field named sdl: String! which exposes the SDL of the service's schema. This SDL (schema definition language) is a printed version of the service's schema including the annotations of federation directives. This SDL does not include the additions of the federation spec."
@@ -41,70 +34,22 @@ type _Service {
 "Union of all types that key directive applied. This information is needed by the Apollo federation gateway."
 union _Entity = User
 
-input LongOperationFilterInput {
-  eq: Long @cost(weight: "10")
-  neq: Long @cost(weight: "10")
-  in: [Long] @cost(weight: "10")
-  nin: [Long] @cost(weight: "10")
-  gt: Long @cost(weight: "10")
-  ngt: Long @cost(weight: "10")
-  gte: Long @cost(weight: "10")
-  ngte: Long @cost(weight: "10")
-  lt: Long @cost(weight: "10")
-  nlt: Long @cost(weight: "10")
-  lte: Long @cost(weight: "10")
-  nlte: Long @cost(weight: "10")
-}
-
-input StringOperationFilterInput {
-  and: [StringOperationFilterInput!]
-  or: [StringOperationFilterInput!]
-  eq: String @cost(weight: "10")
-  neq: String @cost(weight: "10")
-  contains: String @cost(weight: "20")
-  ncontains: String @cost(weight: "20")
-  in: [String] @cost(weight: "10")
-  nin: [String] @cost(weight: "10")
-  startsWith: String @cost(weight: "20")
-  nstartsWith: String @cost(weight: "20")
-  endsWith: String @cost(weight: "20")
-  nendsWith: String @cost(weight: "20")
-}
-
-input UserFilterInput {
-  and: [UserFilterInput!]
-  or: [UserFilterInput!]
-  id: LongOperationFilterInput
-  name: StringOperationFilterInput
-}
-
-input UserSortInput {
-  id: SortEnumType @cost(weight: "10")
-  name: SortEnumType @cost(weight: "10")
-}
-
-enum SortEnumType {
-  ASC
-  DESC
-}
-
-"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
-directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
-
 "Used to indicate a combination of fields that can be used to uniquely identify and fetch an object or interface."
 directive @key(fields: FieldSet! resolvable: Boolean = true) repeatable on OBJECT | INTERFACE
 
 "Links definitions within the document to external schemas."
 directive @link("Gets imported specification url." url: String! "Gets optional list of imported element names." import: [String!]) repeatable on SCHEMA
 
-"The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
-directive @listSize("The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field." assumedSize: Int "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments." slicingArguments: [String!] "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query." slicingArgumentDefaultValue: Int "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields." sizedFields: [String!] "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error." requireOneSlicingArgument: Boolean! = true) on FIELD_DEFINITION
+"The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
 
 "Scalar representing a set of fields."
 scalar FieldSet
 
 "The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
 scalar Long
+
+scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")
 
 "The _Any scalar is used to pass representations of entities from external services into the root _entities field for execution. Validation of the _Any scalar is done by matching the __typename and @external fields defined in the schema."
 scalar _Any

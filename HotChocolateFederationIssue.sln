@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotChocolateFederationIssue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotChocolateFederationIssue.ApiB", "src\HotChocolateFederationIssue.ApiB\HotChocolateFederationIssue.ApiB.csproj", "{B5931959-F8DF-4415-A17E-F85EC574289B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{39AE3FA2-DC36-4CC0-9CBF-0884EF1179B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

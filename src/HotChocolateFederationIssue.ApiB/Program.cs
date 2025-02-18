@@ -1,4 +1,4 @@
-using HotChocolateFederationIssue.ApiB.Types;
+using HotChocolateFederationIssue.ApiB.Handlers;
 using HotChocolateFederationIssue.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
