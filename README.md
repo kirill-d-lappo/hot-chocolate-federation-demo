@@ -20,6 +20,10 @@ Both services generate their own schema on disk (schema-a.graphql and schema-b.g
 
 Also, solution contains scripts for running router instance, which joins subgraphs A and B into a supergraph.
 
+## Related Issues
+
+* [HotChocolate.ApolloFederation ArgumentParser not parsing ListValue kind](https://github.com/ChilliCream/graphql-platform/issues/6232)
+
 ## How To
 
 * Run ApiA project (dotnet run), make sure it runs
