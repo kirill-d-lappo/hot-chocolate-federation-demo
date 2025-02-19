@@ -10,11 +10,11 @@ public class User
   /// <summary>
   /// Magic numbers
   /// </summary>
-  public IEnumerable<long> Numbers { get; set; }
+  public ICollection<long> Numbers { get; set; }
 
   public Guid PersonalKey { get; set; }
 
   public long Age { get; set; }
 
-  public IEnumerable<LongInside> Longs { get; set; }
+  public ICollection<LongInside> Longs { get; set; }
 }

@@ -21,10 +21,13 @@ type User @key(fields: "id") {
   age: Long! @external
   personalKey: UUID! @external
   numbers: [Long!] @external
+  "Workaround for Numbers"
+  numbersString: String @external
   longs: [LongInside] @external
   collectionOfDefaultTypeExample: String @requires(fields: "name age numbers personalKey")
   simpleTypesOnlyExample: String @requires(fields: "name age personalKey")
   collectionOfRefType: String @requires(fields: "longs { value }")
+  workaroundForNumbers: String @requires(fields: "numbersString")
 }
 
 "This type provides a field named sdl: String! which exposes the SDL of the service's schema. This SDL (schema definition language) is a printed version of the service's schema including the annotations of federation directives. This SDL does not include the additions of the federation spec."

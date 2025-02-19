@@ -83,4 +83,27 @@ public class UserTypeExtensions
 
     return $"User longs: {string.Join(",", longs)}";
   }
+
+  [Requires("numbersString")]
+  public string WorkaroundForNumbers([Parent] User user)
+  {
+    if (user == null)
+    {
+      return "user is null, can't create extended name";
+    }
+
+    var numbersString = user.NumbersString;
+    if (string.IsNullOrWhiteSpace(numbersString))
+    {
+      return "user NumbersString is empty, can't create extended name";
+    }
+
+    // Note [2025-02-19 klappo] splitting and parsing back and forth just for an example
+    var numbers = numbersString
+      .Split(';')
+      .Select(long.Parse)
+      .ToList();
+
+    return $"Numbers are: {string.Join(", ", numbers)}";
+  }
 }

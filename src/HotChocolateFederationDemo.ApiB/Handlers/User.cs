@@ -17,11 +17,17 @@ public class User
 
   // FixMe [2025-02-18 klappo] not working
   [External]
-  public IEnumerable<long> Numbers { get; set; }
+  public ICollection<long> Numbers { get; set; }
+
+  /// <summary>
+  /// Workaround for <see cref="Numbers"/>
+  /// </summary>
+  [External]
+  public string NumbersString { get; set; }
 
   // FixMe [2025-02-18 klappo] not working
   [External]
-  public IEnumerable<LongInside> Longs { get; set; }
+  public ICollection<LongInside> Longs { get; set; }
 
   // Note [2025-02-18 klappo] specify all fields you want to pass to methods in UserTypeExtensions.cs
   // Note [2025-02-18 klappo] also add names of those field into Required attribute field set
@@ -35,8 +41,9 @@ public class User
     string name,
     long age,
     Guid personalKey,
-    IEnumerable<long> numbers,
-    IEnumerable<LongInside> longs
+    string numbersString,
+    ICollection<long> numbers,
+    ICollection<LongInside> longs
   )
   {
     return new User
@@ -44,6 +51,7 @@ public class User
       Id = id,
       Name = name,
       Numbers = numbers,
+      NumbersString = numbersString,
       PersonalKey = personalKey,
       Age = age,
       Longs = longs,

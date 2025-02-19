@@ -57,6 +57,9 @@ Also, solution contains scripts for running router instance, which joins subgrap
 
       # example of array of ref type, also always null
       collectionOfRefType
+
+      # result of workaround
+      workaroundForNumbers
     }
   }
   ```
@@ -85,7 +88,8 @@ Result is:
         ],
         "simpleTypesOnlyExample": "1--user1--42--e35f3d0a-12d9-4617-9898-5f1d6b295ec1",
         "collectionOfDefaultTypeExample": "user MAGIC NUMBERS are null, can't create extended name",
-        "collectionOfRefType": "user LONGS  are null, can't create extended name"
+        "collectionOfRefType": "user LONGS  are null, can't create extended name",
+        "workaroundForNumbers": "Numbers are: 1, 2, 3, 4"
       }
       // other users here...
     ]
